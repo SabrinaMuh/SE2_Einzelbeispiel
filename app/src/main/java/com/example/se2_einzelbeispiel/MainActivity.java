@@ -41,6 +41,7 @@ class MatrikelnrThread extends Thread{
 }
 
 public class MainActivity extends AppCompatActivity {
+    EditText mnrText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText mnrText = (EditText) findViewById(R.id.editTextMatrikelNR);
+                mnrText = (EditText) findViewById(R.id.editTextMatrikelNR);
                 TextView answer = (TextView) findViewById(R.id.textViewAnswer);
                 String mnr = mnrText.getText().toString();
 
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void switchActivity(){
         Intent intent = new Intent(this, CalculateActivity.class);
+        intent.putExtra("mnr", mnrText.getText().toString());
         startActivity(intent);
     }
 }
