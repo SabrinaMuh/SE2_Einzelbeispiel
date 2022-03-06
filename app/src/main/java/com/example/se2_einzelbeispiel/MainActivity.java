@@ -26,10 +26,10 @@ class MatrikelnrThread extends Thread{
         try {
             Socket socket = new Socket("se2-isys.aau.at", 53212);
 
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
             outputStream.writeBytes(mnr + "\n");
 
-            BufferedReader inputReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             answer = inputReader.readLine();
 
             socket.close();
