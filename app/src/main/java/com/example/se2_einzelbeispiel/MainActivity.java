@@ -2,6 +2,7 @@ package com.example.se2_einzelbeispiel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button buttonNext = (Button) findViewById(R.id.buttonNext);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchActivity();
+            }
+        });
+
         Button buttonSend = (Button) findViewById(R.id.buttonSend);
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 answer.setText(thread.answer);
+
+                if(!answer.getText().equals("Dies ist keine gueltige Matrikelnummer")) buttonNext.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private void switchActivity(){
+        Intent intent = new Intent(this, CalculateActivity.class);
+        startActivity(intent);
     }
 }
